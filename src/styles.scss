@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.ng-valid:not(form) {
+    border-left: 5px solid #42A948;
+    /* green */
+  }
+  
+  .ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+    /* red */
+  }
+  

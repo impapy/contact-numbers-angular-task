@@ -1,0 +1,124 @@
+<div class="flex flex-col min-w-full">
+  <div class="overflow-x-auto min-w-full mt-10">
+    <input
+      type="text"
+      id="searchTerm"
+      name="searchTerm"
+      [(ngModel)]="searchTerm"
+      #ctrl="ngModel"
+      value="searchTerm"
+      class="px-4 py-2 border rounded focus:outline-none focus:border-blue-500 absolute left-10"
+      placeholder="search "
+      (change)="search()"
+    />
+
+    <button
+      class="w-100 bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-green-500 transition duration-300 absolute right-10"
+      type="button"
+      (click)="openModal()"
+    >
+      Add New
+    </button>
+    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8 mt-10">
+      <!--  -->
+
+      <div class="relative h-10 w-72  mt-5">
+        <select
+          class="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-red-500 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+          (change)="onSelect($event)" 
+          
+        >
+          <option [value]="oldest">
+            {{ oldest }}
+          </option>
+          <option [defaultSelected]="true" [value]="newst">{{ newst }}</option>
+        </select>
+        <label
+          class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500"
+        >
+          Sort
+        </label>
+      </div>
+      <!--  -->
+      <div
+        class="overflow-hidden min-w-full mt-10 w-100 p-6 bg-white rounded-lg shadow-md"
+      >
+        <table class="min-w-full text-left text-sm font-light">
+          <thead
+            class="border-b font-medium dark:border-neutral-500 bg-slate-400"
+          >
+            <tr>
+              <th scope="col" class="px-6 py-4">Name</th>
+              <th scope="col" class="px-6 py-4">Phone</th>
+              <th scope="col" class="px-6 py-4">Address</th>
+              <th scope="col" class="px-6 py-4">Notes</th>
+              <th scope="col" class="px-6 py-4"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="border-b dark:border-neutral-500"
+              *ngFor="let contact of contacts"
+            >
+              <td class="whitespace-nowrap px-6 py-4 font-medium">
+                {{ contact.name }}
+              </td>
+              <td class="whitespace-nowrap px-6 py-4">{{ contact.phone }}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{ contact.address }}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{ contact.notes }}</td>
+              <td class="whitespace-nowrap px-6 py-4">
+                <button
+                  class="rounded-full px-2 py-1 hover:bg-orange-200"
+                  (click)="openModal(contact._id)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                    />
+                  </svg>
+                </button>
+                <button
+                  class="rounded-full px-2 py-1 ml-4 hover:bg-red-500"
+                  (click)="deleteContact(contact._id)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                    />
+                  </svg>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <app-contact-form (onSubmit)="updateContacts($event)"></app-contact-form>
+</div>
+
+<app-paginator
+  [currentPage]="pageInfo?.currentPage || 1"
+  [totalPages]="pageInfo?.total || 1"
+  [hasNextPage]="pageInfo?.hasNextPage"
+  (pageChange)="onPageChange($event)"
+></app-paginator>

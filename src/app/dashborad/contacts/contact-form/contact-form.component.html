@@ -1,0 +1,46 @@
+<div *ngIf="showModal"
+  class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+  <div class="relative w-auto my-6 mx-auto max-w-6xl">
+    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+      <div class="relative p-6 flex-auto">
+        <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+          <h3 *ngIf="!contactId" class="text-3xl font-semibold">New Contact</h3>
+          <h3 *ngIf="contactId" class="text-3xl font-semibold">edit Contact</h3>
+          <button
+            class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+            (click)="closeModal()">
+            <span
+              class="bg-transparent text-red opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">×</span>
+          </button>
+        </div>
+        <div class="relative p-6 flex-auto">
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="mb-4">
+              <input type="text" id="name" class="px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+                formControlName="name" placeholder="Enter your name" />
+              <input type="text" id="phone"
+                class="ml-10 px-4 py-2 border rounded focus:outline-none focus:border-blue-500" formControlName="phone"
+                placeholder="Enter your phone" />
+            </div>
+            <div class="mb-4">
+              <input type="text" id="address" class="px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+                formControlName="address" placeholder="Enter your address" />
+              <input type="text" id="notes"
+                class="ml-10 px-4 py-2 border rounded focus:outline-none focus:border-blue-500" formControlName="notes"
+                placeholder="Enter your notes" />
+            </div>
+            <div class="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+              <button
+                class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                type="button" (click)="closeModal()">Close</button>
+              <button type="submit"
+                class="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition duration-300"
+                [disabled]="form.invalid">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>

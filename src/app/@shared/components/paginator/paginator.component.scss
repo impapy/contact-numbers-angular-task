@@ -1,0 +1,19 @@
+.paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.page-btn {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.page-info {
+  margin: 0 10px;
+  font-size: 14px;
+}

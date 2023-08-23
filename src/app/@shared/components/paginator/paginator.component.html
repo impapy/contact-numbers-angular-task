@@ -1,0 +1,11 @@
+<div class="paginator flex items-center justify-center mt-6 space-x-4">
+    <button *ngIf="currentPage>1" class="page-btn" [class.disabled]="currentPage === 1" (click)="onPageChange(currentPage - 1)">
+        Previous
+    </button>
+    <span class="page-info text-lg font-semibold text-gray-700">
+        Page {{ currentPage }} of {{ totalPages }}
+    </span>
+    <button *ngIf="hasNextPage" class="page-btn" [class.disabled]="currentPage === totalPages" (click)="onPageChange(currentPage + 1)">
+        Next
+    </button>
+</div>
