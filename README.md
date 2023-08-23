@@ -15,3 +15,15 @@
 3- then run
 
     npm start
+
+some users 
+
+   
+    username : user1
+    password : 11111111
+      
+    username : user2
+    password : 11111111
+       
+    username : user3
+    password : 11111111
