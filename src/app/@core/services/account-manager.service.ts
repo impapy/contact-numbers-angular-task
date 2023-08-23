@@ -43,13 +43,21 @@ export class AccountManagerService {
       },
       (err) => {
         console.log(err.error);
-        this.toastr.error(`${err.error.message}`)
+        this.toastr.error(`${err.error.message}`);
       }
     );
   }
 
   logut() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/account/login']);
+    this.accountClient.logout().subscribe(
+      ({ data }) => {
+        localStorage.removeItem('token');
+        this.router.navigate(['/account/login']);
+      },
+      (err) => {
+        console.log(err.error);
+        this.toastr.error(`${err.error.message}`);
+      }
+    );
   }
 }

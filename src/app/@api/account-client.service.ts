@@ -16,4 +16,10 @@ export class AccountClientService {
 
     return this.http.post<any>(_url, credential);
   }
+
+  logout(): Observable<any> {
+    const _url = `${ACCOUNT_BASE_PATH}/logout`;
+
+    return this.http.post<any>(_url, {});
+  }
 }
